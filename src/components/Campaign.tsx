@@ -212,7 +212,7 @@ export default function Campaign() {
             style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
           >
             <ImgPlaceholder height={320} label="परिंडा अभियान — मुख्य छवि" />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="campaign-stats-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <ImgPlaceholder height={180} label="पिलानी न्यायालय" />
               <ImgPlaceholder height={180} label="जन भागीदारी" />
               <ImgPlaceholder height={180} label="परिंडे स्थापना" />
@@ -220,7 +220,7 @@ export default function Campaign() {
             </div>
 
             {/* Stats */}
-            <div style={{
+            <div className="campaign-steps-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 12,

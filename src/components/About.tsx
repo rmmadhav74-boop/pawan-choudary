@@ -50,6 +50,7 @@ export default function About() {
                 <img
                   src={pawanImg}
                   alt="डॉ. पवन चौधरी"
+                  className="about-img"
                   style={{ width: '100%', height: 500, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
                   loading="lazy"
                 />
@@ -113,7 +114,7 @@ export default function About() {
             </p>
 
             {/* Highlights grid */}
-            <div style={{
+            <div className="about-highlights-grid" style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               gap: 12,

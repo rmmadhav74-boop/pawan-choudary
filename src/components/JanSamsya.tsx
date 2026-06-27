@@ -187,7 +187,7 @@ export default function JanSamsya() {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+                <div className="jan-samsya-tags-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
                   <div>
                     <label style={{
                       display: 'block',
