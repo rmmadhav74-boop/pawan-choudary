@@ -13,298 +13,331 @@ function getImage(key?: string) {
   return null;
 }
 
+type MediaItem = {
+  id: string;
+  title: string;
+  category: string;
+  type: 'photo' | 'video';
+  imageKey?: string;
+  duration?: string;
+};
 
-
-// Combine items for the gallery
-const allMedia = [
-  ...galleryItems.map(item => ({ ...item, type: 'photo' as const })),
-  ...videos.map(item => ({ 
-    id: item.id, 
-    title: item.title, 
-    category: 'वीडियो', 
-    size: 'landscape' as const, 
-    hasImage: false,
+const allMedia: MediaItem[] = [
+  ...galleryItems.map(item => ({
+    id: item.id,
+    title: item.title,
+    category: item.category,
+    type: 'photo' as const,
+    imageKey: item.imageKey,
+  })),
+  ...videos.map(item => ({
+    id: item.id,
+    title: item.title,
+    category: 'वीडियो',
     type: 'video' as const,
-    duration: item.duration
-  }))
+    duration: item.duration,
+  })),
 ];
+
+type LightboxItem = { src?: string; type: 'photo' | 'video'; alt: string };
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('सभी');
-  const [lightbox, setLightbox] = useState<{ src?: string; type: 'photo' | 'video'; alt: string } | null>(null);
+  const [lightbox, setLightbox] = useState<LightboxItem | null>(null);
 
   const filterOptions = ['सभी', 'फोटो', 'वीडियो'];
 
-  const filtered = activeFilter === 'सभी'
-    ? allMedia.slice(0, 24)
-    : activeFilter === 'फोटो'
+  const filtered =
+    activeFilter === 'सभी'
+      ? allMedia.slice(0, 24)
+      : activeFilter === 'फोटो'
       ? allMedia.filter(m => m.type === 'photo').slice(0, 24)
       : allMedia.filter(m => m.type === 'video').slice(0, 24);
 
-  return (
-    <section id="gallery" style={{ background: '#F9FAFB', padding: '100px 0' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
-        <SectionHeader
-          tag="गैलरी"
-          title="चित्र एवं वीडियो गैलरी"
-          subtitle="डॉ. पवन चौधरी के सेवा कार्यों और अभियानों की झलकियाँ।"
-          center
-        />
+  const openLightbox = (item: MediaItem) => {
+    const src = item.type === 'photo' ? getImage(item.imageKey) || undefined : undefined;
+    setLightbox({ src, type: item.type, alt: item.title });
+  };
 
-        {/* Filters */}
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 40 }}>
-          {filterOptions.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat)}
+  return (
+    <>
+      <section id="gallery" style={{ background: '#F9FAFB', padding: '100px 0' }}>
+        <div className="container">
+          <SectionHeader
+            tag="गैलरी"
+            title="चित्र एवं वीडियो गैलरी"
+            subtitle="डॉ. पवन चौधरी के सेवा कार्यों और अभियानों की झलकियाँ।"
+            center
+          />
+
+          {/* Filter Buttons */}
+          <div style={{
+            display: 'flex',
+            gap: 12,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginBottom: 40,
+          }}>
+            {filterOptions.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                style={{
+                  padding: '10px 28px',
+                  borderRadius: 8,
+                  border: activeFilter === cat ? 'none' : '1px solid #E5E7EB',
+                  background: activeFilter === cat ? '#12355B' : '#FFFFFF',
+                  color: activeFilter === cat ? '#FFFFFF' : '#4B5563',
+                  fontFamily: 'var(--font-hindi)',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: activeFilter === cat
+                    ? '0 4px 12px rgba(18,53,91,0.22)'
+                    : '0 1px 4px rgba(0,0,0,0.04)',
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="gallery-grid">
+            <AnimatePresence>
+              {filtered.map((item, i) => {
+                const img = item.type === 'photo' ? getImage(item.imageKey) : null;
+                return (
+                  <motion.div
+                    key={item.id}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, delay: (i % 8) * 0.04 }}
+                    className="media-card"
+                    onClick={() => openLightbox(item)}
+                    title={item.title}
+                  >
+                    {/* Thumbnail */}
+                    <div style={{ position: 'relative' }}>
+                      {img ? (
+                        <img
+                          src={img}
+                          alt={item.title}
+                          className="card-thumb"
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: '100%',
+                            height: 220,
+                            background: item.type === 'video'
+                              ? 'linear-gradient(135deg, #12355B 0%, #1e5f8a 100%)'
+                              : 'linear-gradient(135deg, #E8F5E9 0%, #F3F4F6 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                            gap: 8,
+                          }}
+                        >
+                          <span style={{
+                            color: item.type === 'video' ? 'rgba(255,255,255,0.5)' : '#9CA3AF',
+                            fontSize: 13,
+                            fontFamily: 'var(--font-english)',
+                          }}>
+                            {item.type === 'video' ? 'Video Placeholder' : 'Photo Placeholder'}
+                          </span>
+                          <span style={{
+                            color: item.type === 'video' ? 'rgba(255,255,255,0.35)' : '#D1D5DB',
+                            fontSize: 11,
+                            fontFamily: 'var(--font-english)',
+                          }}>
+                            Click to add media
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Video play overlay */}
+                      {item.type === 'video' && (
+                        <div className="play-overlay">
+                          <div className="play-btn">
+                            <div style={{
+                              width: 0,
+                              height: 0,
+                              borderTop: '9px solid transparent',
+                              borderBottom: '9px solid transparent',
+                              borderLeft: '15px solid #12355B',
+                              marginLeft: 4,
+                            }} />
+                          </div>
+                          {item.duration && (
+                            <div style={{
+                              position: 'absolute',
+                              bottom: 10,
+                              right: 10,
+                              background: 'rgba(0,0,0,0.7)',
+                              color: '#fff',
+                              fontSize: 12,
+                              padding: '3px 8px',
+                              borderRadius: 5,
+                              fontFamily: 'var(--font-english)',
+                              fontWeight: 500,
+                            }}>
+                              {item.duration}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card Info */}
+                    <div style={{ padding: '16px 18px 18px' }}>
+                      <span
+                        className="card-badge"
+                        style={{
+                          background: item.type === 'video' ? '#EFF6FF' : '#F0FDF4',
+                          color: item.type === 'video' ? '#1D4ED8' : '#15803D',
+                        }}
+                      >
+                        {item.type === 'video' ? 'VIDEO' : 'PHOTO'}
+                      </span>
+                      <p className="card-title">{item.title}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* View All Button */}
+          <div style={{ textAlign: 'center', marginTop: 52 }}>
+            <Link
+              to="/gallery"
               style={{
-                padding: '10px 24px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: '#12355B',
+                color: '#FFFFFF',
+                padding: '14px 36px',
                 borderRadius: 8,
-                border: activeFilter === cat ? 'none' : '1px solid #E5E7EB',
-                background: activeFilter === cat ? '#12355B' : '#FFFFFF',
-                color: activeFilter === cat ? '#FFFFFF' : '#4B5563',
-                fontFamily: "var(--font-english)",
-                fontSize: 15,
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: activeFilter === cat ? '0 4px 12px rgba(18,53,91,0.2)' : '0 2px 4px rgba(0,0,0,0.02)',
+                fontFamily: 'var(--font-hindi)',
+                fontSize: 16,
+                fontWeight: 600,
+                textDecoration: 'none',
+                boxShadow: '0 4px 14px rgba(18,53,91,0.22)',
+                transition: 'background 0.2s',
               }}
             >
-              {cat}
-            </button>
-          ))}
+              सम्पूर्ण गैलरी देखें
+            </Link>
+          </div>
         </div>
+      </section>
 
-        {/* Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: 24,
-        }}>
-          <AnimatePresence>
-            {filtered.map((item, i) => {
-              const img = item.type === 'photo' ? getImage(item.imageKey) : null;
-              return (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35, delay: (i % 8) * 0.04 }}
-                  onClick={() => setLightbox({ src: img || undefined, type: item.type, alt: item.title })}
-                  style={{ 
-                    cursor: 'pointer',
-                    background: '#FFFFFF',
-                    borderRadius: 16,
-                    overflow: 'hidden',
-                    border: '1px solid #E5E7EB',
-                    boxShadow: 'var(--shadow-card)',
-                    position: 'relative',
-                  }}
-                  whileHover={{ y: -4, boxShadow: 'var(--shadow-card-hover)' }}
-                >
-                  <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
-                    {img ? (
-                      <img
-                        src={img}
-                        alt={item.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div style={{ width: '100%', height: '100%', background: '#F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ color: '#9CA3AF', fontSize: 14 }}>Media Placeholder</span>
-                      </div>
-                    )}
-                    
-                    {item.type === 'video' && (
-                      <div style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'rgba(0,0,0,0.3)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <div style={{
-                          width: 56,
-                          height: 56,
-                          borderRadius: '50%',
-                          background: '#FFFFFF',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                        }}>
-                          <div style={{
-                            width: 0,
-                            height: 0,
-                            borderTop: '8px solid transparent',
-                            borderBottom: '8px solid transparent',
-                            borderLeft: '14px solid #12355B',
-                            marginLeft: 4
-                          }} />
-                        </div>
-                        {item.duration && (
-                          <div style={{
-                            position: 'absolute',
-                            bottom: 12,
-                            right: 12,
-                            background: 'rgba(0,0,0,0.7)',
-                            color: '#FFFFFF',
-                            fontSize: 12,
-                            padding: '4px 8px',
-                            borderRadius: 6,
-                            fontFamily: "var(--font-english)"
-                          }}>
-                            {item.duration}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div style={{ padding: '20px' }}>
-                    <div style={{
-                      display: 'inline-block',
-                      background: item.type === 'video' ? '#E8F5E9' : '#F3F4F6',
-                      color: item.type === 'video' ? '#2E7D32' : '#4B5563',
-                      padding: '4px 10px',
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      marginBottom: 12,
-                      fontFamily: "var(--font-english)"
-                    }}>
-                      {item.type === 'video' ? 'वीडियो' : 'फोटो'}
-                    </div>
-                    <h3 style={{
-                      fontFamily: "var(--font-hindi)",
-                      fontSize: 16,
-                      fontWeight: 600,
-                      color: '#1a1a1a',
-                      lineHeight: 1.4,
-                    }}>
-                      {item.title}
-                    </h3>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: 48 }}>
-          <Link
-            to="/gallery"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: '#12355B',
-              color: '#FFFFFF',
-              padding: '14px 32px',
-              borderRadius: 8,
-              fontFamily: "var(--font-hindi)",
-              fontSize: 16,
-              fontWeight: 600,
-              textDecoration: 'none',
-              boxShadow: '0 4px 12px rgba(18,53,91,0.2)',
-              transition: 'background 0.2s',
-            }}
-          >
-            सम्पूर्ण गैलरी देखें
-          </Link>
-        </div>
-      </div>
-
-      {/* Lightbox Modal */}
+      {/* Lightbox with blur backdrop */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
+            className="lightbox-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={() => setLightbox(null)}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              background: 'rgba(18,53,91,0.95)',
-              zIndex: 9000,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 24,
-            }}
           >
-            {lightbox.type === 'photo' && lightbox.src ? (
-              <motion.img
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                src={lightbox.src}
-                alt={lightbox.alt}
-                onClick={e => e.stopPropagation()}
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '85vh',
-                  objectFit: 'contain',
-                  borderRadius: 8,
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                }}
-              />
-            ) : (
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                onClick={e => e.stopPropagation()}
-                style={{
-                  width: '100%',
-                  maxWidth: 800,
+            <motion.div
+              className="lightbox-content"
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              onClick={e => e.stopPropagation()}
+            >
+              {lightbox.type === 'photo' && lightbox.src ? (
+                <>
+                  <img src={lightbox.src} alt={lightbox.alt} />
+                  <div className="lightbox-caption">{lightbox.alt}</div>
+                </>
+              ) : (
+                <div style={{
+                  width: 'min(760px, 85vw)',
                   aspectRatio: '16/9',
-                  background: '#000000',
-                  borderRadius: 12,
+                  background: 'linear-gradient(135deg, #12355B, #1e5f8a)',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#FFFFFF',
-                  flexDirection: 'column',
-                  gap: 16
-                }}
+                  gap: 16,
+                }}>
+                  <div style={{
+                    width: 72,
+                    height: 72,
+                    borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.18)',
+                    border: '2px solid rgba(255,255,255,0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <div style={{
+                      width: 0,
+                      height: 0,
+                      borderTop: '14px solid transparent',
+                      borderBottom: '14px solid transparent',
+                      borderLeft: '24px solid #fff',
+                      marginLeft: 6,
+                    }} />
+                  </div>
+                  <p style={{
+                    color: 'rgba(255,255,255,0.75)',
+                    fontFamily: 'var(--font-hindi)',
+                    fontSize: 16,
+                    textAlign: 'center',
+                    padding: '0 24px',
+                  }}>
+                    {lightbox.alt}
+                  </p>
+                  <p style={{
+                    color: 'rgba(255,255,255,0.4)',
+                    fontFamily: 'var(--font-english)',
+                    fontSize: 13,
+                  }}>
+                    वीडियो प्लेयर — YouTube लिंक से जोड़ें
+                  </p>
+                </div>
+              )}
+
+              {/* Close Button */}
+              <button
+                className="lightbox-close"
+                onClick={() => setLightbox(null)}
+                aria-label="Close"
               >
-                <div style={{ fontSize: 48, opacity: 0.5 }}>Play</div>
-                <div style={{ fontFamily: "var(--font-hindi)", fontSize: 20 }}>वीडियो प्लेयर</div>
-              </motion.div>
-            )}
-            
-            <button
-              onClick={() => setLightbox(null)}
-              style={{
-                position: 'absolute',
-                top: 24,
-                right: 24,
-                background: 'rgba(255,255,255,0.1)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                borderRadius: '50%',
-                width: 48,
-                height: 48,
-                color: '#FFFFFF',
-                fontSize: 24,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s',
-              }}
-            >
-              ×
-            </button>
+                ×
+              </button>
+            </motion.div>
+
+            {/* Tap anywhere hint */}
+            <p style={{
+              position: 'fixed',
+              bottom: 24,
+              left: 0,
+              right: 0,
+              textAlign: 'center',
+              color: 'rgba(255,255,255,0.45)',
+              fontSize: 13,
+              fontFamily: 'var(--font-english)',
+              pointerEvents: 'none',
+            }}>
+              Tap outside to close
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 }
