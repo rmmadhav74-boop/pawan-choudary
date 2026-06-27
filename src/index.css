@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FFFFFF;
+  --color-off-white: #F9FAFB;
+  --color-accent-green: #2E7D32;
+  --color-light-green: #E8F5E9;
+  --color-deep-navy: #12355B;
+  --color-light-grey: #F3F4F6;
+  --color-border: #E5E7EB;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-green-dark: #1B5E20;
+  --color-green-medium: #388E3C;
+
+  --font-hindi: 'Noto Sans Devanagari', 'Mukta', sans-serif;
+  --font-english: 'Inter', sans-serif;
+
+  --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --shadow-nav: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #1a1a1a;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Hindi typography optimization */
+.font-hindi {
+  font-family: 'Noto Sans Devanagari', 'Mukta', sans-serif;
+}
+
+.font-english {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #2E7D32, #4CAF50);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E7D32;
+  border-radius: 3px;
+}
+
+/* Section spacing */
+.section-padding {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+}
+
+/* Image placeholder */
+.img-placeholder {
+  background: linear-gradient(135deg, #E8F5E9 0%, #F3F4F6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  border: 2px dashed #E5E7EB;
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Smooth transitions */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* WhatsApp floating button */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  animation: pulse-green 2s infinite;
+}
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  background: #2E7D32;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(46, 125, 50, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  color: white;
+}
+.back-to-top:hover {
+  background: #1B5E20;
+  transform: translateY(-2px);
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #FFFFFF;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Mobile bottom nav */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #E5E7EB;
+  display: none;
+  padding: 8px 0 env(safe-area-inset-bottom);
+}
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+}
+
+/* Masonry gallery */
+.masonry-grid {
+  columns: 4;
+  column-gap: 16px;
+}
+@media (max-width: 1024px) { .masonry-grid { columns: 3; } }
+@media (max-width: 768px) { .masonry-grid { columns: 2; } }
+@media (max-width: 480px) { .masonry-grid { columns: 1; } }
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+/* Timeline */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #E8F5E9, #2E7D32, #E8F5E9);
+  transform: translateX(-50%);
+}
+
+/* Animated leaf */
+@keyframes float-leaf {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+.leaf-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  animation: float-leaf linear forwards;
+}
+
+/* Bird animation */
+@keyframes fly-bird {
+  0% { transform: translateX(-100px) translateY(0); }
+  25% { transform: translateX(25vw) translateY(-30px); }
+  50% { transform: translateX(50vw) translateY(10px); }
+  75% { transform: translateX(75vw) translateY(-20px); }
+  100% { transform: translateX(110vw) translateY(0); }
+}
+
+.flying-bird {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  animation: fly-bird 8s ease-in-out forwards;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Section header decoration */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: #2E7D32;
+  border-radius: 2px;
+  margin: 12px 0 24px;
+}
+
+.section-divider-center {
+  width: 60px;
+  height: 3px;
+  background: #2E7D32;
+  border-radius: 2px;
+  margin: 12px auto 24px;
+}
+
+/* News card */
+.news-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #E5E7EB;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 10px;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 16px;
+  background: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+.form-input:focus {
+  border-color: #2E7D32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Video placeholder */
+.video-placeholder {
+  background: linear-gradient(135deg, #12355B 0%, #1B5E20 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.video-placeholder:hover {
+  transform: scale(1.02);
+}
+
+/* Print media */
+@media print {
+  .no-print { display: none !important; }
+}
