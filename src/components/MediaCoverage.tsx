@@ -117,7 +117,7 @@ export default function MediaCoverage() {
                     flexDirection: 'column',
                     gap: 8,
                   }}>
-                    <span style={{ fontSize: 32 }}>📰</span>
+                    <span style={{ fontSize: 32 }}></span>
                     <span style={{
                       fontFamily: "'Noto Sans Devanagari', sans-serif",
                       fontSize: 12,

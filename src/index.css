@@ -14,8 +14,8 @@
   --color-green-dark: #1B5E20;
   --color-green-medium: #388E3C;
 
-  --font-hindi: 'Noto Sans Devanagari', 'Mukta', sans-serif;
-  --font-english: 'Inter', sans-serif;
+  --font-hindi: 'Noto Serif Devanagari', 'Noto Sans Devanagari', serif;
+  --font-english: 'Outfit', 'Inter', sans-serif;
 
   --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.12);

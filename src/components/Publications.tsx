@@ -3,7 +3,7 @@ import { SectionHeader } from './UI';
 
 const publications = [
   {
-    icon: '📋',
+    icon: '',
     title: 'किसान ज्ञापन 2025',
     type: 'Memorandum',
     desc: 'किसानों की प्रमुख मांगों और समस्याओं पर तैयार किया गया विस्तृत ज्ञापन।',
@@ -11,7 +11,7 @@ const publications = [
     borderColor: '#86EFAC',
   },
   {
-    icon: '🎤',
+    icon: '',
     title: 'कलेक्ट्रेट प्रदर्शन भाषण',
     type: 'Speech',
     desc: 'झुंझुनू कलेक्ट्रेट प्रदर्शन में दिए गए ऐतिहासिक भाषण का पूर्ण पाठ।',
@@ -19,7 +19,7 @@ const publications = [
     borderColor: '#93C5FD',
   },
   {
-    icon: '📰',
+    icon: '',
     title: 'परिंडा अभियान प्रेस नोट',
     type: 'Press Note',
     desc: '"एक परिंडा – अनेक जीवन" अभियान के बारे में विस्तृत प्रेस नोट।',
@@ -27,7 +27,7 @@ const publications = [
     borderColor: '#D8B4FE',
   },
   {
-    icon: '📄',
+    icon: '',
     title: 'जैविक खेती प्रस्ताव',
     type: 'Document',
     desc: 'भारतीय किसान संघ के राष्ट्रीय अधिवेशन में पारित जैविक खेती प्रस्ताव।',
@@ -35,7 +35,7 @@ const publications = [
     borderColor: '#FCD34D',
   },
   {
-    icon: '📊',
+    icon: '',
     title: 'किसान समस्या रिपोर्ट',
     type: 'Report',
     desc: 'जिले के किसानों की प्रमुख समस्याओं पर आधारित विस्तृत रिपोर्ट।',
@@ -43,7 +43,7 @@ const publications = [
     borderColor: '#FDA4AF',
   },
   {
-    icon: '📌',
+    icon: '',
     title: 'कार्यक्रम प्रतिवेदन',
     type: 'Report',
     desc: 'भारतीय किसान संघ के विभिन्न कार्यक्रमों की वार्षिक रिपोर्ट।',
@@ -153,7 +153,7 @@ export default function Publications() {
                 }}
                 id={`pub-download-${i}`}
               >
-                ⬇️ डाउनलोड करें
+                ️ डाउनलोड करें
               </button>
             </motion.div>
           ))}

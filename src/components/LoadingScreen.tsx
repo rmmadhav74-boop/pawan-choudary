@@ -17,7 +17,7 @@ export default function LoadingScreen() {
           style={{ textAlign: 'center' }}
         >
           {/* Logo / emblem */}
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🌾</div>
+          <div style={{ fontSize: 48, marginBottom: 16 }}></div>
           <h1 style={{
             fontFamily: "'Noto Sans Devanagari', sans-serif",
             fontSize: 28,

@@ -39,7 +39,7 @@ export default function BirdAnimation() {
               transition={{ duration: 8, ease: 'easeInOut' }}
               style={{ fontSize: 22 }}
             >
-              🕊️
+              ️
             </motion.div>
           </AnimatePresence>
         </div>

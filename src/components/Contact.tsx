@@ -81,7 +81,7 @@ export default function Contact() {
                   justifyContent: 'center',
                   fontSize: 24,
                 }}>
-                  🌾
+                  
                 </div>
                 <div>
                   <h3 style={{
@@ -238,7 +238,7 @@ export default function Contact() {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-                <span style={{ fontSize: 48, marginBottom: 12 }}>📍</span>
+                <span style={{ fontSize: 48, marginBottom: 12 }}></span>
                 <h4 style={{
                   fontFamily: "'Noto Sans Devanagari', sans-serif",
                   fontSize: 18,
@@ -280,7 +280,7 @@ export default function Contact() {
                     gap: 6,
                   }}
                 >
-                  📍 Google Maps पर देखें
+                   Google Maps पर देखें
                 </a>
 
                 {/* Grid overlay for map feel */}

@@ -197,7 +197,7 @@ export default function JanSamsya() {
                       color: '#374151',
                       marginBottom: 6,
                     }}>
-                      📷 फोटो
+                       फोटो
                     </label>
                     <input
                       type="file"
@@ -233,7 +233,7 @@ export default function JanSamsya() {
                       color: '#374151',
                       marginBottom: 6,
                     }}>
-                      🎥 वीडियो
+                       वीडियो
                     </label>
                     <input
                       type="file"
@@ -295,7 +295,7 @@ export default function JanSamsya() {
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: 56, marginBottom: 16 }}>✅</div>
+                <div style={{ fontSize: 56, marginBottom: 16 }}></div>
                 <h3 style={{
                   fontFamily: "'Noto Sans Devanagari', sans-serif",
                   fontSize: 22,
@@ -433,8 +433,8 @@ export default function JanSamsya() {
                 सीधे संपर्क करें
               </h4>
               {[
-                { icon: '📞', label: 'फोन', value: '+91 99999 99999', href: 'tel:+919999999999' },
-                { icon: '💬', label: 'WhatsApp', value: 'WhatsApp करें', href: 'https://wa.me/919999999999' },
+                { icon: '', label: 'फोन', value: '+91 99999 99999', href: 'tel:+919999999999' },
+                { icon: '', label: 'WhatsApp', value: 'WhatsApp करें', href: 'https://wa.me/919999999999' },
               ].map(c => (
                 <a
                   key={c.label}

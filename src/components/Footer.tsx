@@ -9,9 +9,7 @@ const quickLinks = [
 ];
 
 const importantLinks = [
-  { label: 'समाचार', href: '#news' },
   { label: 'गैलरी', href: '#gallery' },
-  { label: 'वीडियो', href: '#videos' },
   { label: 'जनसमस्याएँ', href: '#jan-samsya' },
 ];
 
@@ -48,7 +46,7 @@ export default function Footer() {
                 justifyContent: 'center',
                 fontSize: 22,
               }}>
-                🌾
+                
               </div>
               <div>
                 <h3 style={{
@@ -241,7 +239,7 @@ export default function Footer() {
             fontSize: 13,
             color: 'rgba(255,255,255,0.5)',
           }}>
-            Designed with ❤️ for Janseva
+            Designed with ️ for Janseva
           </div>
         </div>
       </div>

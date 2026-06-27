@@ -8,19 +8,16 @@ const navLinks = [
   { label: 'होम', href: '#home' },
   { label: 'परिचय', href: '#about' },
   { label: 'सेवा कार्य', href: '#social-impact' },
-  { label: 'समाचार', href: '#news' },
   { label: 'गैलरी', href: '#gallery' },
-  { label: 'वीडियो', href: '#videos' },
   { label: 'जनसमस्याएँ', href: '#jan-samsya' },
   { label: 'संपर्क', href: '#contact' },
 ];
 
 const mobileNavLinks = [
-  { label: 'होम', href: '#home', icon: '🏠' },
-  { label: 'परिचय', href: '#about', icon: '👤' },
-  { label: 'समाचार', href: '#news', icon: '📰' },
-  { label: 'गैलरी', href: '#gallery', icon: '🖼️' },
-  { label: 'संपर्क', href: '#contact', icon: '📞' },
+  { label: 'होम', href: '#home', icon: '' },
+  { label: 'परिचय', href: '#about', icon: '' },
+  { label: 'गैलरी', href: '#gallery', icon: '' },
+  { label: 'संपर्क', href: '#contact', icon: '' },
 ];
 
 export default function Navbar() {
@@ -87,7 +84,7 @@ export default function Navbar() {
               fontSize: 20,
               flexShrink: 0,
             }}>
-              🌾
+              
             </div>
             <div>
               <div style={{

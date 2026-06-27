@@ -1,8 +1,7 @@
-import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
-import NewsDetail from './pages/NewsDetail';
 import GalleryPage from './pages/GalleryPage';
 import VideoPage from './pages/VideoPage';
 import LoadingScreen from './components/LoadingScreen';
@@ -28,7 +27,6 @@ function App() {
       <LeafAnimation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news/:id" element={<NewsDetail />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/videos" element={<VideoPage />} />
       </Routes>

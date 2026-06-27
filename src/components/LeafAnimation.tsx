@@ -44,7 +44,7 @@ export default function LeafAnimation() {
             animationDuration: `${leaf.duration}s`,
           }}
         >
-          🍃
+          
         </div>
       ))}
     </>

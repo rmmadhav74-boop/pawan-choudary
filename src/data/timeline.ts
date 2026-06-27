@@ -15,7 +15,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'जनवरी',
     title: 'जिला अध्यक्ष नियुक्ति',
     description: 'भारतीय किसान संघ, झुंझुनू के जिला अध्यक्ष के रूप में नियुक्ति। जिले भर के किसानों की आवाज बनने का संकल्प।',
-    icon: '🌾',
+    icon: '',
     category: 'kisan'
   },
   {
@@ -24,7 +24,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'मार्च',
     title: 'परिंडा अभियान की शुरुआत',
     description: '"एक परिंडा – अनेक जीवन" अभियान का शुभारम्भ। 50 परिंडे लगाने का प्रारंभिक लक्ष्य निर्धारित।',
-    icon: '🕊️',
+    icon: '️',
     category: 'parinda'
   },
   {
@@ -33,7 +33,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'अप्रैल',
     title: 'पिलानी न्यायालय में परिंडे',
     description: 'पिलानी न्यायालय परिसर में 11 परिंडे स्थापित। न्यायालय परिसर में पक्षियों के लिए पानी की व्यवस्था।',
-    icon: '⚖️',
+    icon: '️',
     category: 'parinda'
   },
   {
@@ -42,7 +42,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'मई',
     title: '500 परिंडे का संकल्प',
     description: 'जन-भागीदारी की भारी सफलता के बाद परिंडा लक्ष्य 50 से बढ़ाकर 500 किया। पूरे जिले में अभियान का विस्तार।',
-    icon: '🌳',
+    icon: '',
     category: 'parinda'
   },
   {
@@ -51,7 +51,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'जून',
     title: 'हमीनपुर में ग्राम इकाइयों का गठन',
     description: 'हमीनपुर, गाडौली, बेरी, लिखवा और केहरपुरा में ग्राम इकाइयों का गठन। संगठन को जमीनी स्तर पर मजबूत किया।',
-    icon: '🏡',
+    icon: '',
     category: 'meeting'
   },
   {
@@ -60,7 +60,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'जुलाई',
     title: 'कलेक्ट्रेट प्रदर्शन',
     description: 'किसानों के अधिकारों की मांग को लेकर झुंझुनू कलेक्ट्रेट पर जोरदार प्रदर्शन। जिला कलेक्टर को ज्ञापन सौंपा।',
-    icon: '✊',
+    icon: '',
     category: 'kisan'
   },
   {
@@ -69,7 +69,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'अगस्त',
     title: 'राष्ट्रीय अधिवेशन में भागीदारी',
     description: 'दांते वाडा सरदार कृषि नगर यूनिवर्सिटी, गुजरात में राष्ट्रीय किसान अधिवेशन में प्रतिनिधित्व।',
-    icon: '🇮🇳',
+    icon: '',
     category: 'meeting'
   },
   {
@@ -78,7 +78,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'सितम्बर',
     title: 'दिशा समिति राजस्थान — राज्य समिति सदस्य',
     description: 'दिशा समिति राजस्थान के राज्य समिति सदस्य के रूप में नियुक्ति। राज्य स्तर पर किसान हितों की आवाज।',
-    icon: '⭐',
+    icon: '',
     category: 'kisan'
   },
   {
@@ -87,7 +87,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'अक्टूबर',
     title: '500 परिंडे का लक्ष्य पूर्ण',
     description: 'पूरे जिले में 500 से अधिक परिंडे स्थापित। हजारों पक्षियों को गर्मी में जीवनदायी पानी मिला।',
-    icon: '🏆',
+    icon: '',
     category: 'parinda'
   },
   {
@@ -96,7 +96,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'जनवरी',
     title: 'किसान सम्मेलन 2026',
     description: 'जिला स्तरीय किसान सम्मेलन का आयोजन। 18,000 से अधिक किसानों तक संगठन की पहुँच।',
-    icon: '🌾',
+    icon: '',
     category: 'kisan'
   },
   {
@@ -105,7 +105,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'मार्च',
     title: 'ग्रामीण विकास अभियान',
     description: '1000 से अधिक परिवारों तक जनसेवा। ग्रामीण क्षेत्रों में स्वास्थ्य शिविर, शिक्षा सहायता और कृषि प्रशिक्षण।',
-    icon: '🤝',
+    icon: '',
     category: 'social'
   },
   {
@@ -114,7 +114,7 @@ export const timelineEvents: TimelineEvent[] = [
     month: 'जून',
     title: '50 जनआंदोलन का मील का पत्थर',
     description: 'जिले में 50 से अधिक जनआंदोलनों का सफल नेतृत्व। किसानों, महिलाओं और युवाओं के अधिकारों के लिए संघर्ष।',
-    icon: '✊',
+    icon: '',
     category: 'social'
   }
 ];

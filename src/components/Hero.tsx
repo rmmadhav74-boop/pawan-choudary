@@ -119,7 +119,7 @@ export default function Hero() {
               marginBottom: 20,
               border: '1px solid rgba(46,125,50,0.15)',
             }}>
-              🌾 भारतीय किसान संघ — झुंझुनू
+               भारतीय किसान संघ — झुंझुनू
             </span>
           </motion.div>
 
@@ -221,7 +221,7 @@ export default function Hero() {
                 transition: 'all 0.25s ease',
               }}
             >
-              📞 सम्पर्क करें
+               सम्पर्क करें
             </a>
             <a
               href="#social-impact"
@@ -243,7 +243,7 @@ export default function Hero() {
                 transition: 'all 0.25s ease',
               }}
             >
-              🌿 सेवा कार्य देखें
+               सेवा कार्य देखें
             </a>
           </motion.div>
 
@@ -325,7 +325,7 @@ export default function Hero() {
                 zIndex: 2,
               }}
             >
-              <div style={{ fontSize: 22 }}>🕊️</div>
+              <div style={{ fontSize: 22 }}>️</div>
               <div style={{ fontFamily: "'Noto Sans Devanagari', sans-serif", fontSize: 12, color: '#2E7D32', fontWeight: 600, marginTop: 4 }}>
                 परिंडा अभियान
               </div>
@@ -350,7 +350,7 @@ export default function Hero() {
               <div style={{ fontFamily: "'Noto Sans Devanagari', sans-serif", fontSize: 14, color: '#FFFFFF', fontWeight: 700 }}>
                 किसान हित
               </div>
-              <div style={{ fontSize: 20, marginTop: 2 }}>🌾</div>
+              <div style={{ fontSize: 20, marginTop: 2 }}></div>
             </motion.div>
           </div>
         </motion.div>

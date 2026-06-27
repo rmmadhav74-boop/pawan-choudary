@@ -171,7 +171,7 @@ export function ImgPlaceholder({ height = 200, label = 'छवि यहाँ �
       style={{ height, ...style }}
     >
       <div>
-        <div style={{ fontSize: 32, marginBottom: 8 }}>📷</div>
+        <div style={{ fontSize: 32, marginBottom: 8 }}></div>
         <div style={{ fontFamily: "'Noto Sans Devanagari', sans-serif", fontSize: 13, color: '#9CA3AF' }}>{label}</div>
       </div>
     </div>
