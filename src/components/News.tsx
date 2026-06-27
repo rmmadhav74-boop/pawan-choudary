@@ -1,10 +1,10 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { SectionHeader, ImgPlaceholder } from '../../Shared/UI';
-import { newsArticles } from '../../../data/news';
-import baithak1Img from '../../../assets/images/news-kisan-baithak-1.jpg';
-import baithak2Img from '../../../assets/images/news-kisan-baithak-2.jpg';
+import { SectionHeader, ImgPlaceholder } from './UI';
+import { newsArticles } from '../data/news';
+import baithak1Img from '../assets/images/news-kisan-baithak-1.jpg';
+import baithak2Img from '../assets/images/news-kisan-baithak-2.jpg';
 
 function getImage(imageKey: string) {
   if (imageKey === 'news-kisan-baithak-1') return baithak1Img;

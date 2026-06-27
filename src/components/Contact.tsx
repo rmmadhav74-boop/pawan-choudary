@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../../Shared/UI';
+import { SectionHeader } from './UI';
 import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaYoutube, FaTwitter } from 'react-icons/fa';
 
 const contactInfo = [

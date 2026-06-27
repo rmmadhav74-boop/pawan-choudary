@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../../Shared/UI';
-import baithak1Img from '../../../assets/images/news-kisan-baithak-1.jpg';
-import baithak2Img from '../../../assets/images/news-kisan-baithak-2.jpg';
-import newspaperImg from '../../../assets/images/newspaper-page.jpg';
-import bksDocImg from '../../../assets/images/bks-document.jpg';
+import { SectionHeader } from './UI';
+import baithak1Img from '../assets/images/news-kisan-baithak-1.jpg';
+import baithak2Img from '../assets/images/news-kisan-baithak-2.jpg';
+import newspaperImg from '../assets/images/newspaper-page.jpg';
+import bksDocImg from '../assets/images/bks-document.jpg';
 
 const mediaItems = [
   {

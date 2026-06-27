@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../../Shared/UI';
-import { timelineEvents } from '../../../data/timeline';
+import { SectionHeader } from './UI';
+import { timelineEvents } from '../data/timeline';
 
 const categoryColors: Record<string, { bg: string; color: string }> = {
   kisan: { bg: '#E8F5E9', color: '#2E7D32' },

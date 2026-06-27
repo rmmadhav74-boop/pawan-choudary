@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SectionHeader, ImgPlaceholder } from '../../Shared/UI';
+import { SectionHeader, ImgPlaceholder } from './UI';
 
 const impactCards = [
   {

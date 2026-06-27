@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import Navbar from '../components/Shared/Navbar/Navbar';
-import Footer from '../components/Shared/Footer/Footer';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { newsArticles } from '../data/news';
-import { ImgPlaceholder } from '../components/Shared/UI';
+import { ImgPlaceholder } from '../components/UI';
 import baithak1Img from '../assets/images/news-kisan-baithak-1.jpg';
 import baithak2Img from '../assets/images/news-kisan-baithak-2.jpg';
 

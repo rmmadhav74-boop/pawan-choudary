@@ -4,12 +4,12 @@ import Home from './pages/Home';
 import NewsDetail from './pages/NewsDetail';
 import GalleryPage from './pages/GalleryPage';
 import VideoPage from './pages/VideoPage';
-import LoadingScreen from './components/Shared/Creative/LoadingScreen';
-import ScrollProgress from './components/Shared/Creative/ScrollProgress';
-import FloatingWhatsApp from './components/Shared/Creative/FloatingWhatsApp';
-import BackToTop from './components/Shared/Creative/BackToTop';
-import BirdAnimation from './components/Shared/Creative/BirdAnimation';
-import LeafAnimation from './components/Shared/Creative/LeafAnimation';
+import LoadingScreen from './components/LoadingScreen';
+import ScrollProgress from './components/ScrollProgress';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
+import BackToTop from './components/BackToTop';
+import BirdAnimation from './components/BirdAnimation';
+import LeafAnimation from './components/LeafAnimation';
 
 function App() {
   const [loading, setLoading] = useState(true);

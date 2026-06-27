@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../../Shared/UI';
+import { SectionHeader } from './UI';
 
 interface FormData {
   naam: string;

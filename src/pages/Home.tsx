@@ -1,19 +1,19 @@
-import Navbar from '../components/Shared/Navbar/Navbar';
-import Hero from '../components/Home/Hero/Hero';
-import About from '../components/Home/About/About';
-import SocialImpact from '../components/Home/SocialImpact/SocialImpact';
-import Campaign from '../components/Home/Campaign/Campaign';
-import News from '../components/Home/News/News';
-import Gallery from '../components/Home/Gallery/Gallery';
-import VideoSection from '../components/Home/Video/VideoSection';
-import MediaCoverage from '../components/Home/MediaCoverage/MediaCoverage';
-import Timeline from '../components/Home/Timeline/Timeline';
-import Publications from '../components/Home/Publications/Publications';
-import PhotoStory from '../components/Home/PhotoStory/PhotoStory';
-import Testimonials from '../components/Home/Testimonials/Testimonials';
-import JanSamsya from '../components/Home/JanSamsya/JanSamsya';
-import Contact from '../components/Home/Contact/Contact';
-import Footer from '../components/Shared/Footer/Footer';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import SocialImpact from '../components/SocialImpact';
+import Campaign from '../components/Campaign';
+import News from '../components/News';
+import Gallery from '../components/Gallery';
+import VideoSection from '../components/VideoSection';
+import MediaCoverage from '../components/MediaCoverage';
+import Timeline from '../components/Timeline';
+import Publications from '../components/Publications';
+import PhotoStory from '../components/PhotoStory';
+import Testimonials from '../components/Testimonials';
+import JanSamsya from '../components/JanSamsya';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
