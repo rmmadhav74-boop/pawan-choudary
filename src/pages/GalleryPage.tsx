@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Shared/Navbar/Navbar';
+import Footer from '../components/Shared/Footer/Footer';
 import { galleryItems, galleryCategories } from '../data/gallery';
-import { SectionHeader, ImgPlaceholder } from '../components/UI';
+import { SectionHeader, ImgPlaceholder } from '../components/Shared/UI';
 import baithak1Img from '../assets/images/news-kisan-baithak-1.jpg';
 import baithak2Img from '../assets/images/news-kisan-baithak-2.jpg';
 

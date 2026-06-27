@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SectionHeader, ImgPlaceholder } from '../UI';
-import { galleryItems, galleryCategories } from '../../data/gallery';
-import baithak1Img from '../../assets/images/news-kisan-baithak-1.jpg';
-import baithak2Img from '../../assets/images/news-kisan-baithak-2.jpg';
+import { SectionHeader, ImgPlaceholder } from '../../Shared/UI';
+import { galleryItems, galleryCategories } from '../../../data/gallery';
+import baithak1Img from '../../../assets/images/news-kisan-baithak-1.jpg';
+import baithak2Img from '../../../assets/images/news-kisan-baithak-2.jpg';
 import { Link } from 'react-router-dom';
 
 function getImage(key?: string) {

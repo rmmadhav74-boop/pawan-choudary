@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../UI';
-import { videos, videoCategories } from '../../data/videos';
+import { SectionHeader } from '../../Shared/UI';
+import { videos, videoCategories } from '../../../data/videos';
 import { Link } from 'react-router-dom';
 
 function PlayIcon() {

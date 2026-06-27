@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Shared/Navbar/Navbar';
+import Footer from '../components/Shared/Footer/Footer';
 import { videos, videoCategories } from '../data/videos';
-import { SectionHeader } from '../components/UI';
+import { SectionHeader } from '../components/Shared/UI';
 
 export default function VideoPage() {
   const [activeFilter, setActiveFilter] = useState('सभी');

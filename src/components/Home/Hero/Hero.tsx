@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { stats } from '../../data/timeline';
-import pawanImg from '../../assets/images/pawan-chaudhary.png';
+import { stats } from '../../../data/timeline';
+import pawanImg from '../../../assets/images/pawan-chaudhary.png';
 
 function StatCard({ number, suffix, label, delay }: { number: number; suffix: string; label: string; delay: number }) {
   const ref = useRef(null);

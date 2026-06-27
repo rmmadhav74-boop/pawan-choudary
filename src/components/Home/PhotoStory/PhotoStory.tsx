@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import { SectionHeader, ImgPlaceholder } from '../UI';
+import { SectionHeader, ImgPlaceholder } from '../../Shared/UI';
 
 const stories = [
   {

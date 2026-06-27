@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../UI';
+import { SectionHeader } from '../../Shared/UI';
 
 const publications = [
   {
