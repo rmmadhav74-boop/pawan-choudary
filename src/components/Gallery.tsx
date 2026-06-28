@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeader } from './UI';
 import { Link } from 'react-router-dom';
 
-// ── Photos ──────────────────────────────────────────────
+// ── All Photos (56 unique, 2 duplicates removed) ─────────────────────
 import p001 from '../assets/images/photo-001.jpeg';
 import p002 from '../assets/images/photo-002.jpeg';
 import p003 from '../assets/images/photo-003.jpeg';
@@ -11,10 +11,8 @@ import p004 from '../assets/images/photo-004.jpeg';
 import p005 from '../assets/images/photo-005.jpeg';
 import p006 from '../assets/images/photo-006.jpeg';
 import p007 from '../assets/images/photo-007.jpeg';
-import p008 from '../assets/images/photo-008.jpeg';
 import p009 from '../assets/images/photo-009.jpeg';
 import p010 from '../assets/images/photo-010.jpeg';
-import p011 from '../assets/images/photo-011.jpeg';
 import p012 from '../assets/images/photo-012.jpeg';
 import p013 from '../assets/images/photo-013.jpeg';
 import p014 from '../assets/images/photo-014.jpeg';
@@ -63,7 +61,7 @@ import p056 from '../assets/images/photo-056.jpeg';
 import p057 from '../assets/images/photo-057.jpeg';
 import p058 from '../assets/images/photo-058.jpeg';
 
-// ── Videos ──────────────────────────────────────────────
+// ── Videos ────────────────────────────────────────────────────────────
 import v01 from '../assets/images/video-01.mp4';
 import v02 from '../assets/images/video-02.mp4';
 import v03 from '../assets/images/video-03.mp4';
@@ -73,109 +71,124 @@ import v06 from '../assets/images/video-06.mp4';
 import v07 from '../assets/images/video-07.mp4';
 import v08 from '../assets/images/video-08.mp4';
 
-// ── Data ─────────────────────────────────────────────────
-const photos: string[] = [
-  p001, p002, p003, p004, p005, p006, p007, p008, p009, p010,
-  p011, p012, p013, p014, p015, p016, p017, p018, p019, p020,
-  p021, p022, p023, p024, p025, p026, p027, p028, p029, p030,
-  p031, p032, p033, p034, p035, p036, p037, p038, p039, p040,
-  p041, p042, p043, p044, p045, p046, p047, p048, p049, p050,
-  p051, p052, p053, p054, p055, p056, p057, p058,
+// ── Gallery photos (event/meeting/social work photos — not newspaper clips)
+export const galleryPhotos: string[] = [
+  p001, p003, p004, p005, p006, p007, p009,
+  p012, p013, p014, p016, p017, p019, p021,
+  p022, p023, p024, p027, p028, p031, p032,
+  p034, p035, p038, p039, p041, p042, p044,
+  p045, p046, p047, p049, p051, p052, p053,
+  p054, p056, p057,
 ];
 
-const videoSrcs: string[] = [v01, v02, v03, v04, v05, v06, v07, v08];
+// ── Newspaper/media photos — used in MediaCoverage section
+export const mediaPhotos: string[] = [
+  p002, p010, p015, p018, p020, p025, p026,
+  p029, p030, p033, p036, p037, p040, p043,
+  p048, p050, p055, p058,
+];
 
+export const videoSrcs: string[] = [v01, v02, v03, v04, v05, v06, v07, v08];
+
+// ── Types ─────────────────────────────────────────────────────────────
 type MediaItem =
   | { type: 'photo'; id: string; src: string }
   | { type: 'video'; id: string; src: string };
 
-const allMedia: MediaItem[] = [
-  ...photos.map((src, i) => ({ type: 'photo' as const, id: `p-${i + 1}`, src })),
-  ...videoSrcs.map((src, i) => ({ type: 'video' as const, id: `v-${i + 1}`, src })),
+const allItems: MediaItem[] = [
+  ...galleryPhotos.map((src, i) => ({ type: 'photo' as const, id: `p-${i}`, src })),
+  ...videoSrcs.map((src, i) => ({ type: 'video' as const, id: `v-${i}`, src })),
 ];
 
-type Lightbox = { type: 'photo' | 'video'; src: string; index: number };
+type LightboxState = { type: 'photo' | 'video'; src: string };
 
-const PREVIEW_COUNT = 18; // show 18 items on home page
+const PREVIEW = 18;
 
 export default function Gallery() {
   const [filter, setFilter] = useState<'सभी' | 'फोटो' | 'वीडियो'>('सभी');
-  const [lightbox, setLightbox] = useState<Lightbox | null>(null);
+  const [lb, setLb] = useState<LightboxState | null>(null);
 
-  const filtered =
+  const displayed =
     filter === 'सभी'
-      ? allMedia.slice(0, PREVIEW_COUNT)
+      ? allItems.slice(0, PREVIEW)
       : filter === 'फोटो'
-      ? allMedia.filter(m => m.type === 'photo').slice(0, PREVIEW_COUNT)
-      : allMedia.filter(m => m.type === 'video');
-
-  const openLightbox = (item: MediaItem, idx: number) =>
-    setLightbox({ type: item.type, src: item.src, index: idx });
-
-  const closeLightbox = () => setLightbox(null);
-
+      ? allItems.filter(m => m.type === 'photo').slice(0, PREVIEW)
+      : allItems.filter(m => m.type === 'video');
 
   return (
     <>
-      {/* ── Section ── */}
       <section id="gallery" style={{ background: '#F9FAFB', padding: '96px 0' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
           <SectionHeader
             tag="गैलरी"
             title="चित्र एवं वीडियो गैलरी"
-            subtitle={`डॉ. पवन चौधरी के सेवा कार्यों की ${photos.length} तस्वीरें और ${videoSrcs.length} वीडियो।`}
+            subtitle={`डॉ. पवन चौधरी के सेवा कार्यों की ${galleryPhotos.length} तस्वीरें एवं ${videoSrcs.length} वीडियो।`}
             center
           />
 
-          {/* Filter Buttons */}
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 40 }}>
+          {/* ── Filters ── */}
+          <div style={{
+            display: 'flex', gap: 12, justifyContent: 'center',
+            flexWrap: 'wrap', marginBottom: 44,
+          }}>
             {(['सभी', 'फोटो', 'वीडियो'] as const).map(f => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 style={{
-                  padding: '10px 28px',
-                  borderRadius: 8,
+                  padding: '10px 28px', borderRadius: 8, cursor: 'pointer',
                   border: filter === f ? 'none' : '1px solid #E5E7EB',
                   background: filter === f ? '#12355B' : '#FFFFFF',
                   color: filter === f ? '#FFFFFF' : '#4B5563',
-                  fontFamily: 'var(--font-hindi)',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  cursor: 'pointer',
+                  fontFamily: 'var(--font-hindi)', fontSize: 15, fontWeight: 600,
                   transition: 'all 0.2s',
                   boxShadow: filter === f ? '0 4px 12px rgba(18,53,91,0.22)' : 'none',
                 }}
               >
                 {f}
-                {f === 'फोटो' && <span style={{ marginLeft: 6, opacity: 0.7, fontSize: 12 }}>({photos.length})</span>}
-                {f === 'वीडियो' && <span style={{ marginLeft: 6, opacity: 0.7, fontSize: 12 }}>({videoSrcs.length})</span>}
+                {f !== 'सभी' && (
+                  <span style={{ marginLeft: 6, opacity: 0.65, fontSize: 12 }}>
+                    ({f === 'फोटो' ? galleryPhotos.length : videoSrcs.length})
+                  </span>
+                )}
               </button>
             ))}
           </div>
 
-          {/* Grid */}
+          {/* ── Grid ── */}
           <div className="gallery-grid">
             <AnimatePresence>
-              {filtered.map((item, i) => (
+              {displayed.map((item, i) => (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.28, delay: (i % 9) * 0.04 }}
-                  className="media-card"
-                  onClick={() => openLightbox(item, i)}
-                  title={item.type === 'photo' ? `फोटो ${i + 1}` : `वीडियो ${i + 1}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.28, delay: (i % 9) * 0.035 }}
+                  onClick={() => setLb({ type: item.type, src: item.src })}
+                  style={{
+                    cursor: 'pointer',
+                    background: '#FFFFFF',
+                    borderRadius: 14,
+                    overflow: 'hidden',
+                    border: '1px solid #E5E7EB',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
+                    transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+                  }}
+                  whileHover={{ y: -5, boxShadow: '0 10px 32px rgba(0,0,0,0.12)' }}
                 >
                   {/* Thumbnail */}
-                  <div style={{ position: 'relative', height: 220, overflow: 'hidden', background: '#F3F4F6' }}>
+                  <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', background: '#F3F4F6' }}>
                     {item.type === 'photo' ? (
                       <img
                         src={item.src}
-                        alt={`गैलरी ${i + 1}`}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s' }}
+                        alt={`सेवा कार्य ${i + 1}`}
+                        style={{
+                          width: '100%', height: '100%',
+                          objectFit: 'cover', display: 'block',
+                          transition: 'transform 0.35s ease',
+                        }}
                         loading="lazy"
                       />
                     ) : (
@@ -183,40 +196,46 @@ export default function Gallery() {
                         <video
                           src={item.src}
                           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                          muted
-                          preload="metadata"
+                          muted preload="metadata"
                         />
-                        {/* Play overlay */}
                         <div style={{
                           position: 'absolute', inset: 0,
-                          background: 'rgba(18,53,91,0.45)',
+                          background: 'rgba(18,53,91,0.42)',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}>
                           <div style={{
                             width: 52, height: 52, borderRadius: '50%',
                             background: 'rgba(255,255,255,0.95)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+                            boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
                           }}>
-                            <div style={{ width: 0, height: 0, borderTop: '9px solid transparent', borderBottom: '9px solid transparent', borderLeft: '15px solid #12355B', marginLeft: 4 }} />
+                            <div style={{
+                              width: 0, height: 0,
+                              borderTop: '9px solid transparent',
+                              borderBottom: '9px solid transparent',
+                              borderLeft: '15px solid #12355B',
+                              marginLeft: 4,
+                            }} />
                           </div>
                         </div>
                       </>
                     )}
                   </div>
-                  {/* Info row */}
-                  <div style={{ padding: '14px 16px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  {/* Badge row */}
+                  <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{
                       background: item.type === 'video' ? '#EFF6FF' : '#F0FDF4',
                       color: item.type === 'video' ? '#1D4ED8' : '#15803D',
-                      padding: '3px 10px', borderRadius: 6,
-                      fontSize: 11, fontWeight: 700, fontFamily: 'var(--font-english)',
-                      letterSpacing: '0.5px',
+                      padding: '3px 9px', borderRadius: 5,
+                      fontSize: 10, fontWeight: 800,
+                      fontFamily: 'var(--font-english)', letterSpacing: '0.6px',
                     }}>
                       {item.type === 'video' ? 'VIDEO' : 'PHOTO'}
                     </span>
-                    <span style={{ fontFamily: 'var(--font-hindi)', fontSize: 13, color: '#6B7280' }}>
-                      {item.type === 'photo' ? `तस्वीर ${i + 1}` : `वीडियो ${i + 1}`}
+                    <span style={{
+                      fontFamily: 'var(--font-hindi)', fontSize: 13, color: '#9CA3AF',
+                    }}>
+                      {item.type === 'photo' ? `सेवा कार्य ${i + 1}` : `वीडियो क्लिप ${i + 1}`}
                     </span>
                   </div>
                 </motion.div>
@@ -224,8 +243,8 @@ export default function Gallery() {
             </AnimatePresence>
           </div>
 
-          {/* View All */}
-          <div style={{ textAlign: 'center', marginTop: 48 }}>
+          {/* View All CTA */}
+          <div style={{ textAlign: 'center', marginTop: 52 }}>
             <Link
               to="/gallery"
               style={{
@@ -237,7 +256,7 @@ export default function Gallery() {
                 boxShadow: '0 4px 14px rgba(18,53,91,0.22)',
               }}
             >
-              सम्पूर्ण गैलरी देखें ({photos.length + videoSrcs.length})
+              सम्पूर्ण गैलरी देखें ({galleryPhotos.length + videoSrcs.length})
             </Link>
           </div>
         </div>
@@ -245,77 +264,73 @@ export default function Gallery() {
 
       {/* ── Lightbox ── */}
       <AnimatePresence>
-        {lightbox && (
+        {lb && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeLightbox}
+            transition={{ duration: 0.18 }}
+            onClick={() => setLb(null)}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: 'rgba(0,0,0,0.88)',
-              backdropFilter: 'blur(14px)',
-              WebkitBackdropFilter: 'blur(14px)',
+              background: 'rgba(0,0,0,0.9)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              padding: 16,
+              padding: 20,
             }}
           >
             <motion.div
               initial={{ scale: 0.88, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.88, opacity: 0 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               onClick={e => e.stopPropagation()}
-              style={{ position: 'relative', maxWidth: '92vw', maxHeight: '90vh' }}
+              style={{ position: 'relative' }}
             >
-              {lightbox.type === 'photo' ? (
+              {lb.type === 'photo' ? (
                 <img
-                  src={lightbox.src}
+                  src={lb.src}
                   alt="enlarged"
                   style={{
-                    maxWidth: '88vw', maxHeight: '85vh',
-                    objectFit: 'contain', borderRadius: 10,
-                    boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                    maxWidth: 'min(90vw, 960px)',
+                    maxHeight: '86vh',
+                    objectFit: 'contain',
+                    borderRadius: 10,
+                    boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
                     display: 'block',
                   }}
                 />
               ) : (
                 <video
-                  src={lightbox.src}
-                  controls
-                  autoPlay
+                  src={lb.src}
+                  controls autoPlay
                   style={{
-                    maxWidth: '88vw', maxHeight: '85vh',
+                    maxWidth: 'min(90vw, 960px)',
+                    maxHeight: '86vh',
                     borderRadius: 10,
-                    boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                    boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
                     display: 'block',
                     background: '#000',
                   }}
                 />
               )}
-
-              {/* Close */}
               <button
-                onClick={closeLightbox}
+                onClick={() => setLb(null)}
+                aria-label="Close"
                 style={{
-                  position: 'absolute', top: -16, right: -16,
-                  width: 40, height: 40, borderRadius: '50%',
+                  position: 'absolute', top: -14, right: -14,
+                  width: 38, height: 38, borderRadius: '50%',
                   background: 'rgba(255,255,255,0.15)',
                   border: '1px solid rgba(255,255,255,0.3)',
                   color: '#fff', fontSize: 22, cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'background 0.2s',
                 }}
-              >
-                ×
-              </button>
+              >×</button>
             </motion.div>
-
-            {/* Hint */}
             <p style={{
-              position: 'fixed', bottom: 20, width: '100%', textAlign: 'center',
-              color: 'rgba(255,255,255,0.4)', fontSize: 12,
+              position: 'fixed', bottom: 18, left: 0, right: 0, textAlign: 'center',
+              color: 'rgba(255,255,255,0.35)', fontSize: 12,
               fontFamily: 'var(--font-english)', pointerEvents: 'none',
             }}>
               Tap outside to close
