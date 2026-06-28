@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeader } from './UI';
-import { Link } from 'react-router-dom';
 
 // ── All Photos (56 unique, 2 duplicates removed) ─────────────────────
 import p001 from '../assets/images/photo-001.jpeg';
@@ -102,17 +101,15 @@ const allItems: MediaItem[] = [
 
 type LightboxState = { type: 'photo' | 'video'; src: string };
 
-const PREVIEW = 18;
-
 export default function Gallery() {
   const [filter, setFilter] = useState<'सभी' | 'फोटो' | 'वीडियो'>('सभी');
   const [lb, setLb] = useState<LightboxState | null>(null);
 
   const displayed =
     filter === 'सभी'
-      ? allItems.slice(0, PREVIEW)
+      ? allItems
       : filter === 'फोटो'
-      ? allItems.filter(m => m.type === 'photo').slice(0, PREVIEW)
+      ? allItems.filter(m => m.type === 'photo')
       : allItems.filter(m => m.type === 'video');
 
   return (
@@ -241,23 +238,6 @@ export default function Gallery() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
-
-          {/* View All CTA */}
-          <div style={{ textAlign: 'center', marginTop: 52 }}>
-            <Link
-              to="/gallery"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: '#12355B', color: '#FFFFFF',
-                padding: '14px 36px', borderRadius: 8,
-                fontFamily: 'var(--font-hindi)', fontSize: 16, fontWeight: 600,
-                textDecoration: 'none',
-                boxShadow: '0 4px 14px rgba(18,53,91,0.22)',
-              }}
-            >
-              सम्पूर्ण गैलरी देखें ({galleryPhotos.length + videoSrcs.length})
-            </Link>
           </div>
         </div>
       </section>

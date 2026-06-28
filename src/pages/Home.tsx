@@ -6,7 +6,6 @@ import Campaign from '../components/Campaign';
 import Timeline from '../components/Timeline';
 import Gallery from '../components/Gallery';
 import MediaCoverage from '../components/MediaCoverage';
-import Publications from '../components/Publications';
 import Testimonials from '../components/Testimonials';
 import JanSamsya from '../components/JanSamsya';
 import Contact from '../components/Contact';
@@ -24,7 +23,6 @@ export default function Home() {
         <Timeline />
         <Gallery />
         <MediaCoverage />
-        <Publications />
         <Testimonials />
         <JanSamsya />
         <Contact />

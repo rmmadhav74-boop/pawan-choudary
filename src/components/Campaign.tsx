@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion';
-import { SectionHeader, ImgPlaceholder } from './UI';
+import { SectionHeader } from './UI';
+
+import imgMain from '../assets/images/photo-058.jpeg';
+import img1 from '../assets/images/photo-057.jpeg';
+import img2 from '../assets/images/photo-056.jpeg';
+import img3 from '../assets/images/photo-054.jpeg';
+import img4 from '../assets/images/photo-053.jpeg';
 
 const timelineSteps = [
   {
@@ -211,12 +217,26 @@ export default function Campaign() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
           >
-            <ImgPlaceholder height={320} label="परिंडा अभियान — मुख्य छवि" />
+            <div style={{
+              height: 320, borderRadius: 16, overflow: 'hidden',
+              boxShadow: '0 12px 32px rgba(0,0,0,0.1)'
+            }}>
+              <img src={imgMain} alt="परिंडा अभियान" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+            </div>
+            
             <div className="campaign-stats-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-              <ImgPlaceholder height={180} label="पिलानी न्यायालय" />
-              <ImgPlaceholder height={180} label="जन भागीदारी" />
-              <ImgPlaceholder height={180} label="परिंडे स्थापना" />
-              <ImgPlaceholder height={180} label="500 का लक्ष्य" />
+              <div style={{ height: 180, borderRadius: 12, overflow: 'hidden' }}>
+                <img src={img1} alt="पिलानी न्यायालय" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              </div>
+              <div style={{ height: 180, borderRadius: 12, overflow: 'hidden' }}>
+                <img src={img2} alt="जन भागीदारी" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              </div>
+              <div style={{ height: 180, borderRadius: 12, overflow: 'hidden' }}>
+                <img src={img3} alt="परिंडे स्थापना" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              </div>
+              <div style={{ height: 180, borderRadius: 12, overflow: 'hidden' }}>
+                <img src={img4} alt="500 का लक्ष्य" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+              </div>
             </div>
 
             {/* Stats */}

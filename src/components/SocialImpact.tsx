@@ -1,5 +1,12 @@
 import { motion } from 'framer-motion';
-import { SectionHeader, ImgPlaceholder } from './UI';
+import { SectionHeader } from './UI';
+
+import img1 from '../assets/images/photo-014.jpeg';
+import img2 from '../assets/images/photo-056.jpeg';
+import img3 from '../assets/images/photo-052.jpeg';
+import img4 from '../assets/images/photo-034.jpeg';
+import img5 from '../assets/images/photo-027.jpeg';
+import img6 from '../assets/images/photo-046.jpeg';
 
 const impactCards = [
   {
@@ -9,6 +16,7 @@ const impactCards = [
     color: '#F0FDF4',
     borderColor: '#86EFAC',
     tag: 'किसान अधिकार',
+    img: img1,
   },
   {
     icon: '️',
@@ -17,6 +25,7 @@ const impactCards = [
     color: '#EFF6FF',
     borderColor: '#93C5FD',
     tag: 'पर्यावरण',
+    img: img2,
   },
   {
     icon: '',
@@ -25,6 +34,7 @@ const impactCards = [
     color: '#F0FDF4',
     borderColor: '#86EFAC',
     tag: 'हरित भविष्य',
+    img: img3,
   },
   {
     icon: '',
@@ -33,6 +43,7 @@ const impactCards = [
     color: '#FFF7ED',
     borderColor: '#FCD34D',
     tag: 'जनकल्याण',
+    img: img4,
   },
   {
     icon: '',
@@ -41,6 +52,7 @@ const impactCards = [
     color: '#FDF4FF',
     borderColor: '#D8B4FE',
     tag: 'ग्राम विकास',
+    img: img5,
   },
   {
     icon: '',
@@ -49,6 +61,7 @@ const impactCards = [
     color: '#FFF1F2',
     borderColor: '#FDA4AF',
     tag: 'आंदोलन',
+    img: img6,
   },
 ];
 
@@ -137,26 +150,25 @@ export default function SocialImpact() {
                 {card.description}
               </p>
 
-              {/* Image placeholder */}
-              <ImgPlaceholder height={160} label="छवि यहाँ जोड़ें" />
-
-              <a
-                href="#news"
-                onClick={e => { e.preventDefault(); document.querySelector('#news')?.scrollIntoView({ behavior: 'smooth' }); }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  marginTop: 16,
-                  color: '#2E7D32',
-                  fontFamily: "'Noto Sans Devanagari', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}
-              >
-                और पढ़ें →
-              </a>
+              {/* Image */}
+              <div style={{
+                height: 180,
+                borderRadius: 12,
+                overflow: 'hidden',
+                marginTop: 'auto',
+                border: '1px solid rgba(0,0,0,0.05)',
+              }}>
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
           ))}
         </div>
