@@ -35,6 +35,17 @@ export default function JanSamsya() {
       return;
     }
     setError('');
+    
+    // Format message for WhatsApp
+    const message = `*नई जनसमस्या दर्ज:*\n\n*नाम:* ${form.naam}\n*मोबाइल:* ${form.mobile}\n*गाँव/क्षेत्र:* ${form.gaon}\n*समस्या विवरण:*\n${form.samasya}`;
+    
+    // Use the contact number (update if specific number is provided)
+    const phoneNumber = '919999999999';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+
     const no = 'JZ-' + Date.now().toString().slice(-6);
     setComplaintNo(no);
     setSubmitted(true);
