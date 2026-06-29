@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { SectionHeader } from './UI';
-import pawanImg from '../assets/images/pawan-chaudhary-new.jpeg';
+import pawanImg from '../assets/images/pawan-turban-cover.jpg';
 
 const highlights = [
   { icon: '', text: 'किसान अधिकारों के लिए अथक संघर्ष' },
